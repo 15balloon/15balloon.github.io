@@ -1169,6 +1169,10 @@ body.page-template .post-title {
     display: none;
 }
 
+.post-content {
+    margin-top: 3rem;
+}
+
 /* Keep images centered, and allow images wider than the main
    text column to break out. */
 .post-content img {
