@@ -10,13 +10,14 @@ language: 'ko-KR'
 name: '15balloon'
 description: "Develop and Write"
 
+# edit baseurl to simply '/' if using as your personal page (instead of a project page)
+baseurl: /
+url: https://15balloon.github.io
 short_url: '15balloon.github.io/'
 disqus: username
-# edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: '&#47'
 
 # Permalinks
-permalink: /:title
+permalink: /:year-:month-:day-:title
 # permalink: /author/:username
 # permalink: /tag/:tag
 
