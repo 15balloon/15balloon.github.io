@@ -5,6 +5,7 @@ markdown: kramdown
 highlighter: rouge
 paginate: 5
 language: 'ko-KR'
+timezone: Asia/Seoul
 
 # Website info
 name: '15balloon'

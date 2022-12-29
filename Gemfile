@@ -7,3 +7,4 @@ gem "nokogiri", ">= 1.12.5"
 gem "addressable", ">= 2.8.0"
 
 gem "webrick", "~> 1.7"
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
