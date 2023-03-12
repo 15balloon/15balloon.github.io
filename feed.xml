@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>15balloon - Articles</title>
+    <description>Develop and Write</description>
+    <link>
+    https://15balloon.github.io</link>
+    
+      
+      <item>
+        <title>Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기</title>
+        
+          <description>&lt;h5 id=&quot;세션-내용-요약&quot;&gt;세션 내용 요약&lt;/h5&gt;
+
+</description>
+        
+        <pubDate>Sun, 19 Feb 2023 16:00:37 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-02-19-Android-Dev-Summit-Android13-review</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-02-19-Android-Dev-Summit-Android13-review</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기</title>
+        
+          <description>&lt;h5 id=&quot;세션-내용-요약&quot;&gt;세션 내용 요약&lt;/h5&gt;
+
+</description>
+        
+        <pubDate>Sun, 05 Feb 2023 21:30:11 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>if(kakao)dev2022 모바일: '카카오페이 앱 리빌딩 스토리' 세션 후기</title>
+        
+          <description>&lt;h5 id=&quot;세션-내용-요약&quot;&gt;세션 내용 요약&lt;/h5&gt;
+
+</description>
+        
+        <pubDate>Sun, 15 Jan 2023 17:57:13 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-01-15-if-kakao-Mobile-kakaopay-rebuilding-review</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-01-15-if-kakao-Mobile-kakaopay-rebuilding-review</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>안드로이드 텍스트뷰 Width 이상 현상</title>
+        
+          <description>&lt;h4 id=&quot;android-textview-width-이상-현상-수정&quot;&gt;Android Textview width 이상 현상 수정&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Sun, 08 Jan 2023 22:52:55 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-01-08-Strange-Android-Textview-width</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-01-08-Strange-Android-Textview-width</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Giuhub Pages 404 error</title>
+        
+          <description>&lt;h4 id=&quot;jekyll-테마-적용-중에-발생한-오류-수정&quot;&gt;Jekyll 테마 적용 중에 발생한 오류 수정&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Thu, 29 Dec 2022 23:20:57 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2022-12-29-Giuhub-Pages-404-error</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2022-12-29-Giuhub-Pages-404-error</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Jekyll baseurl error</title>
+        
+          <description>&lt;h4 id=&quot;jekyll-테마-적용-중-발생한-오류-수정&quot;&gt;Jekyll 테마 적용 중 발생한 오류 수정&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Sun, 25 Dec 2022 04:20:29 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2022-12-25-Jekyll-baseurl-error</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2022-12-25-Jekyll-baseurl-error</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Info</title>
+        
+          <description>&lt;p&gt;Open blog today.&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 23 Dec 2022 23:46:49 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2022-12-23-welcome-to-blog</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2022-12-23-welcome-to-blog</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

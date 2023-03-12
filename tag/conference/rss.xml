@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>15balloon.github.io/</title>
+   
+   <link>https://15balloon.github.io</link>
+   <description>Develop and Write</description>
+   <language>ko-KR</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기</title>
+	  <link>/2023-02-19-Android-Dev-Summit-Android13-review</link>
+	  <author></author>
+	  <pubDate>2023-02-19T16:00:37+09:00</pubDate>
+	  <guid>/2023-02-19-Android-Dev-Summit-Android13-review</guid>
+	  <description><![CDATA[
+	     <h5 id="세션-내용-요약">세션 내용 요약</h5>
+
+<ol>
+  <li>Android 13 버전의 변화 <br />
+ Android 13 버전이 릴리즈됨에 따라 모든 앱에 영향을 미치는 사항과 SDK 버전이 33 이상인 경우에만 영향이 미치는 사항이 생겼다. <br />
+ 모든 앱에 영향을 미치는 사항은 사용자에게 앱의 백그라운드 동작을 알리고 이를 제어할 수 있도록 하기 위함이다.
+    <ol>
+      <li>모든 앱에 영향을 미치는 사항
+        <ul>
+          <li>사용자가 포그라운드 서비스(이하 FGS)를 종료할 수 있도록 Task Manager 제공한다. <br />
+ FGS가 실행 중이라면 이를 새로운 인터페이스에서 실행 중인 앱을 보고 종료할 수 있도록 한다. <br />
+ adb 커맨드를 사용하여 FGS를 종료할 때와 동일한 상황을 테스트할 수 있다.
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell cmd activity stop-app PACKAGE_NAME
+</code></pre></div>            </div>
+            <p>force-stop 커맨드와도 유사한데, FGS Task Manager와는 다른 점이 있다.</p>
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell cmd activity force-stop PACKAGE_NAME
+</code></pre></div>            </div>
+            <p>FGS Task Manager로 인한 앱 종료 시에는 기록(History)에서 앱이 삭제되지 않고, 예약된 Job이 취소되지 않는다. <br />
+ <img src="/assets/images/2023-02-19-Android13_1.jpg" width="100%" height="100%" title="Effects of closure" alt="Image: Effects of closure" />
+ 그렇기에 앱에 장기적인 영향이 덜 미친다. <br />
+ FGS Task Manager에 의해 종료된 앱은 콜백을 받지는 않으나, 앱 시작 시 ApplicationExitInfo를 통해 당시 상황을 알 수 있다. <br />
+ 이를 통해 사용자에 의한 종료인지 여부와 오류, ANR, Exception, 메모리 부족 문제 등을 확인할 수 있다. <br />
+ FGS Task Manager를 통해 데이터 손실이 최소화되도록 종료 명령을 처리하고, FGS가 정말 앱에 필요한지 확인해야 한다고 당부했다.</p>
+          </li>
+          <li>백그라운드 액티비티가 제한된 앱 대기 버킷(Restricted App Standby Bucket)으로 이동하기 까지 대기하는 기간이 45일에서 8일로 짧아졌다. <br />
+ 제한된 앱 대기 버킷은 Android 12에서 도입되었는데, Job들이 하루에 10분 동안만 수행이 되고, 긴급 Job들도 더 적게 실행이 되며, 알람도 하나만 호출할 수 있도록 하는 기능이다. <br />
+ 아래 코드를 통해, 앱이 해당 상태로 변경된 경우 필수적인 Job을 예약할 수 있도록 지원할 수 있다.
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">val</span> <span class="py">usageStatsManager</span> <span class="p">=</span> <span class="n">getSystemService</span><span class="p">&lt;</span><span class="nc">UsageStatsManager</span><span class="p">&gt;()</span>
+ <span class="n">usageStatsManager</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">appStandbyBucket</span> <span class="p">==</span> <span class="nc">STANDBY_BUCKET_RESTRICTED</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">..</span><span class="p">.</span>
+<span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>            </div>
+            <p>Job과 알람을 실행할 때 앱 상태를 로깅(Logging)해야 예상치 못한 동작들을 추적할 수 있다. <br />
+ 앱 대기 버킷 상태도 adb로 테스트할 수 있다.</p>
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell am set-standby-bucket PACKAGE_NAME 45
+</code></pre></div>            </div>
+            <p>앱이 실행 중인 상태에서는 테스트 할 수 없다. <br />
+ 앱이 상호작용 중이기 때문에 버킷에서 빠져 나가기 때문이다. <br />
+ 앱이 제한된 버킷 상태로 가지 않으려면 해당 앱에 대한 상호작용과 함께 실행 가능한 알람을 받도록 사용자의 동의를 얻어야 한다. <br />
+ Android 13 부터는 권한을 얻어야 해당 작업을 수행할 수 있다. <br />
+ 만약 사용자가 이 권한을 거부한다면 다시는 이 권한을 요청하지 않는다. <br />
+ 앱 삭제 후 재설치하거나, 앱이 SDK 버전 33에 타겟팅된 경우는 예외이다. <br />
+ AndroidX 함수를 통해 앱에서 알림이 활성화 되었는지 확인할 수 있다.</p>
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">val</span> <span class="py">notificationsManagerCompat</span> <span class="p">=</span> 
+  <span class="nc">NotificationManagerCompat</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+ <span class="n">notificationsManagerCompat</span><span class="p">.</span><span class="nf">areNotificationsEnabled</span><span class="p">()</span>
+</code></pre></div>            </div>
+            <p>adb 커맨드를 통해 권한을 삭제하여 테스트할 수 있다.</p>
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell pm revoke PACKAGE_NAME
+ android.permission.POST_NOTIFICATIONS
+ adb shell pm clear-permission-flags PACKAGE_NAME \
+android.permission.POST_NOTIFICATIONS user-set
+ adb shell pm clear-permission-flags PACKAGE_NAME \
+android.permission.POST_NOTIFICATIONS user-fixed
+</code></pre></div>            </div>
+          </li>
+          <li>앱이 SDK 버전 33에 타겟팅된 경우, 인텐트를 명시적으로 지정하여 인텐트 필터 요소와 일치하는 경우에만 전달되도록 동작이 변경되었다. <br />
+ 다른 앱에서 내부 코드를 갑자기 트리거하는 오류를 막기 위해 BroadcastReceiver에 허용되지 않은 intent.action을 방지하는 코드를 추가해야 한다.
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">if</span> <span class="p">(</span><span class="n">intent</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="nf">equals</span><span class="p">(</span><span class="n">allowedAction</span><span class="p">))</span> <span class="p">{</span>
+<span class="o">..</span><span class="p">.</span>
+ <span class="p">}</span>
+</code></pre></div>            </div>
+          </li>
+          <li>클립보드 콘텐츠를 시각적으로 확인하는 기능이 추가되었다. <br />
+ 이에 따라 개인 정보나 신용카드 정보 등 민감한 정보들을 복사했을 때 클립보드에 보여지지 않도록 처리해야 한다.
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// SDK version 33 or higher</span>
+ <span class="n">clipData</span><span class="p">.</span><span class="nf">apply</span> <span class="p">{</span>
+<span class="n">description</span><span class="p">.</span><span class="n">extras</span> <span class="p">=</span> <span class="nc">PersistableBundle</span><span class="p">().</span><span class="nf">apply</span> <span class="p">{</span>
+  <span class="nf">putBoolean</span><span class="p">(</span><span class="nc">ClipDescription</span><span class="p">.</span><span class="nc">EXTRA_IS_SENSITIVE</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">}</span>
+ <span class="p">}</span>
+ <span class="c1">// SDK version lower than 33</span>
+ <span class="n">clipData</span><span class="p">.</span><span class="nf">apply</span> <span class="p">{</span>
+<span class="n">description</span><span class="p">.</span><span class="n">extras</span> <span class="p">=</span> <span class="nc">PersistableBundle</span><span class="p">().</span><span class="nf">apply</span> <span class="p">{</span>
+  <span class="nf">putBoolean</span><span class="p">(</span><span class="s">"android.content.extra_IS_SENSITIVE"</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>SDK 버전 33에서 변화한 동작(Privacy를 중심으로)
+        <ul>
+          <li>
+            <p>WiFi 주변 기기(Nearby WiFi Devices) 권한을 도입했다. <br />
+ 이전 안드로이드 버전에서는 주변 기기 탐색을 위해 WiFi Manager 클래스를 사용해야 했고, 위치 권한도 필요했다. <br />
+ 안드로이드 13에서는 NEARBY_WIFI_DEVICES 런타임 권한을 사용하여 Wifi Manager의 메소드나 위치 권한 없이 주변 기기를 쉽게 탐색할 수 있다.</p>
+
+            <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span>
+<span class="na">android:name=</span><span class="s">"android.permission.NEARBY_WIFI_DEVICES"</span>
+<span class="na">android:usesPermissionFlags=</span><span class="s">"neverForLocation"</span> <span class="nt">/&gt;</span>
+</code></pre></div>            </div>
+            <p>앱을 SDK 버전 33에 타겟팅하는 경우, 주변 WiFi 기기 탐색 시 NEARBY_WIFI_DEVICES 권한을 요청하지 않는다면 많은 Exception을 일으키게 되니 이 점을 유의해야 한다.</p>
+          </li>
+          <li>미디어 권한이 세분화되었다. <br />
+ 이에 따라 READ_EXTERNAL_STORAGE 권한 대신 미디어 종류에 따라 다음과 같은 권한을 요청해야 한다. <br />
+ <img src="/assets/images/2023-02-19-Android13_2.jpg" width="100%" height="100%" title="Granular media permissions" alt="Image: Granular media permissions" /></li>
+          <li>
+            <p>생체 신호 센서(Body sensor)를 백그라운드에서 사용하기 위해 허용해야 하는 권한이 추가되었다.</p>
+
+            <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span>
+<span class="na">android:name=</span><span class="s">"android.permission.BODY_SENSORS_BACKGROUND"</span> <span class="nt">/&gt;</span>
+</code></pre></div>            </div>
+          </li>
+          <li>더 이상 SDK에 포함되지 않는 인터페이스들이 있다. <br />
+ 해당 인터페이스는 다음 4개이며, 대체 인터페이스를 사용하면 된다. <br />
+ <img src="/assets/images/2023-02-19-Android13_3.jpeg" width="100%" height="100%" title="Non-SDK interfaces" alt="Image: Non-SDK interfaces" /></li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h4 id="후기">후기</h4>
+
+<p>최근 여러 기종에 대한 Android 13 업그레이드가 적용되면서 회사에서 서비스 중이던 한 모바일 앱에 크고 작은 문제들이 발생했었다. <br />
+그런데 이에 대한 대비가 안 되어 있어, 급하게 수정 작업을 진행하여 배포가 이루어졌다고 한다. <br />
+문제가 해결된 이후에 해당 모바일 앱의 유지보수 업무가 우리 팀으로 이관되면서 안드로이드 버전에 따른 앱 마이그레이션 사항을 살펴보게 되었다. <br />
+안드로이드 개발자임에도 안드로이드 버전에 따른 변경 사항을 잘 알지 못했던 것은 지금까지 TV 앱 개발을 진행해왔기 때문이다. <br />
+특히나 일반 TV 앱이 아니고, 특정 셋탑에 종속되는 앱이었기 때문에 더욱 관심도가 떨어져 있었다. <br />
+아무리 TV 앱을 개발한다지만 어떻게 안드로이드 관련 최신 내용을 공부하지 않았냐고 묻는다면 딱히 할 말이 없다. <br />
+지금이라도 하고자 하니 따뜻하게 바라봐 주길 바란다. <br />
+<br />
+일단 정리한 내용은 당장 주요하게 봐야 하는 것들이다. <br />
+생략된 내용은 추후에 정리하고자 한다. <br />
+‘모든 앱에 영향을 미치는 사항’은 뜬금없이 발생하는 오류를 막기 위해 꼭 숙지해야 하는 내용이라 주의 깊게 들었다. <br />
+일단은 인텐트 관련 내용 말고는 유지보수 시 신경 써야 하는 내용은 없긴 했다. <br />
+그래도 FGS와 버킷 관련 내용은 자칫하면 앱에 영향을 크게 미칠 수 있는 것들이라, 최대한 꼼꼼히 살펴보았다. <br />
+특히 버킷 관련 내용은 처음 듣는 내용이라 공식 문서를 읽었다. <br />
+안정적인 앱 서비스를 위해 버킷 관련 예외 처리가 꼭 필요할 듯하다. <br />
+권한 관련 추가 내용은 꼭 숙지해야 하는 사항이기에 세션에서 소개한 세부 세션을 들어볼 계획이다. <br />
+<br />
+Android 14의 개발자 프리뷰가 이미 공개되었고, 곧 베타 버전 공개도 예정되어 있으니 앞으로 이를 주의 깊게 살펴볼 계획이다. <br />
+Android 13의 변경 사항은 늦게 알게 되었지만, Android 14는 미리 알아보고 준비해서 안정적인 서비스를 제공하도록 노력할 것이다.</p>
+
+<hr />
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://youtu.be/wBx3-ZObxY8?list=PLWz5rJ2EKKc8PO99T1QQLrPAJILqxJXW6">Migrate Your Apps to Android 13</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기</title>
+	  <link>/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review</link>
+	  <author></author>
+	  <pubDate>2023-02-05T21:30:11+09:00</pubDate>
+	  <guid>/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review</guid>
+	  <description><![CDATA[
+	     <h5 id="세션-내용-요약">세션 내용 요약</h5>
+
+<ol>
+  <li>
+    <p>적용 배경</p>
+
+    <ul>
+      <li>React-Native에서 Android Native로의 앱 리뉴얼 미션을 부여받음</li>
+      <li>해당 앱이 적은 Spec과 화면을 가졌기에 Trouble Shooting에 부담이 없으리라 판단</li>
+      <li>기존 Project가 View의 onDraw를 사용하는 자체 Framework이었기에 Jetpack Compose 개념 이해가 수월</li>
+    </ul>
+  </li>
+  <li>
+    <p>Jetpack Compose <br />
+ 기존의 Native UI는 명령을 통해 Page를 표시한다. <br />
+ View를 XML로 미리 구성하고, findViewById나 binding으로 View를 불러와서 변화를 명령하는 방식이다. <br />
+ 선언형 Jetpack Compose는 모든 Page 구성요소가 정의 되어 있고, State에 따라서 표시 여부를 결정한다. <br />
+ 그리고 싶은 View를 모두 정의해놓고, State에 맞게 View를 선택적으로 그린다.</p>
+
+    <p>Jetpack Compose를 사용하면 다음과 같은 장점이 있다.</p>
+    <ol>
+      <li>Build 속도가 줄어들어 생산성이 향상한다.</li>
+      <li>APK 크기가 감소한다.<br />
+   1, 2번에 대한 자세한 내용은 <a href="https://developer.android.com/jetpack/compose/ergonomics?hl=ko">Reference 3번</a>을 참조하면 된다.</li>
+      <li>웹뷰와 같은 Native 기능과 Context를 쉽게 사용할 수 있다.</li>
+      <li>Kotlin Code만으로 대부분의 UI 개발이 가능하다는 것도 큰 장점이다. XML과 Kotlin Code를 왕복하면서 개발할 필요 없기 때문에 개발자 입장에서는 더 편하다.</li>
+      <li>RecyclerView와 Adapter 사용 없이 List를 만들 수 있다. RecyclerView를 사용하면 재사용되는 View 처리 등등 신경 써야 할 부분도 많고, 헷갈리는 부분도 많다. 그런데 이것 대신 Jetpack Compose 내에서 편리하게 Row, Column 기능을 사용할 수 있다.</li>
+      <li>데이터(literals) 수정을 하면 Emulator에서 실시간(Live Edit)으로 볼 수 있다.</li>
+      <li>State 변화로 인해 UI 갱신이 일어날 때 UI가 속한 Tree를 전부 탐색하는 것이 아닌, 변경되는 UI만 탐색하기 때문에 가볍다.</li>
+    </ol>
+
+    <p>당연히 단점도 존재하는 데 단점은 다음과 같다.</p>
+    <ol>
+      <li>LifeCycle 대응이 안 된다. Composable 내부에서 LifeCycle 변경 여부를 알아챌 수 없어서, Activity에서 LifeCycle 변경이 일어날 때 Composable에 이를 알려줘야 한다.</li>
+      <li>같은 화면에 있는 Widget이 서로 다른 함수로 이루어져 있다면 변수를 공유할 수 없다. DI, 전역 관리, 매개변수 등을 사용해서 변수를 공유할 수 있도록 해야 한다.</li>
+      <li>같은 Page에 속한 Widget들이 사용하는 State는 Widget의 상위인 Page에서 생성하여 관리한다. 그렇기 때문에 해당 Page가 삭제되면 Widget의 State도 초기화된다. 이처럼 State가 초기화되는 상황에서 값을 유지하기 위해서는 remember, rememberSaveable을 활용해야 한다. State 관리가 제대로 이루어지지 않으면 화면 갱신이 안 되거나, 원하는 데이터를 얻지 못할 수 있다.</li>
+      <li>UI가 Activity Base 구성이 아니기 때문에, Firebase Tracking 활용 시 화면별 Tracking이 어렵다. 화면 진입 시점을 Logging에 추가해야 한다.</li>
+      <li>아키텍처 자료가 부재하다. (2021.11. 발표이므로 이때 기준) MVC, MVVM, Clean Architecture 등 Jetpack Compose 사용과 관련한 아키텍처에 대한 자료를 찾아보기 힘들다.</li>
+      <li>모든 Page가 State로 연결되어 관리되기 때문에 잘못된 구성으로 인한 오류 발생 여지가 존재한다. 논리적으로 구성만 잘 한다면 문제가 없겠지만, 세상에 완벽한 건 없는 법이다.</li>
+    </ol>
+
+    <p>Jetpack Compose 사용 시 주의해야 할 점은 다음과 같다.</p>
+    <ol>
+      <li>State가 변경되면 해당 State를 사용하는 전체 Composable 함수가 Recomposition되는게 아니라, 해당 함수 내에서 변경된 State를 사용하는 Composable만 Recomposition된다.</li>
+      <li>State로 Model을 사용할 때 Model의 파라미터만 변경이 된 경우에는 Recomposition되지 않는다. Model 자체가 변경되어야 Recomposition된다.</li>
+      <li>Composable은 여러 번 호출될 수 있기 때문에, 내부에서 한 번만 수행되어야 하는 함수들은 LaunchedEffect 등을 사용하여 호출이 다량 일어나지 않도록 해야 한다.</li>
+      <li>Composable 내부에서는 변수 값이 변경되어도 Recomposition 되지 않기 때문에, 변수에 따라서 UI가 변경되어야 하는 경우에는 State를 사용해야 한다.</li>
+      <li>Composable 내부에서 변수 사용 시 remember를 사용하지 않으면 Recomposition 과정에서 변수가 재생성된다. 객체 또한 마찬가지다.</li>
+      <li>Parcelable, Serializable Object를 사용했을 때 Object 내부 값이 변경되지 않으면 Recomposition되지 않는다.</li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="후기">후기</h4>
+
+<p>Jetpack에 Compose라는 선언형 UI Framework가 있다는 사실은 처음 알았다. <br />
+본 세션은 Compose에 대한 기본 개념을 이미 알고 있다는 것을 전제로 이루어졌기 때문에 Android Developer 문서를 간단하게 읽고 시청하였다. <br />
+<br />
+실제 서비스를 적용한 후기이다 보니 세세한 장단점을 알 수 있어서 좋았다. <br />
+코드를 짜면서 겪는 사소한 일화들이 담긴 세션이었다. <br />
+다만, Jetpack Compose를 처음 접한 사람에겐 다소 불친절한 세션이었다. <br />
+아무래도 기본 개념을 설명하기엔 시간이 촉박해서 어쩔 수 없었을 것 같다. <br />
+<br />
+XML을 작성하지 않고 View를 구성할 수 있다는 점이 굉장히 매력적이었다. <br />
+세션에서 장점으로 언급한 것과 같이, XML과 코드를 번갈아 가며 분석하는 것은 피곤한 일이다. <br />
+Layout뿐만 아니라, Selector, Style 등도 같이 봐야 하니 번거롭다. <br />
+그런데 이러한 파일없이 코드로만 작성하여 View를 편리하게 구현할 수 있으니 흥미로웠다. <br />
+간단한 앱을 개발할 때는 Jetpack Compose 사용을 고려해봐도 괜찮을 것 같다.</p>
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://deview.kr/2021/sessions/478">Android Jetpack Compose 실제 서비스 적용 후기 / DEVIEW 2021</a></li>
+  <li><a href="https://developer.android.com/jetpack/compose/documentation?hl=ko">https://developer.android.com/jetpack/compose/documentation?hl=ko</a></li>
+  <li><a href="https://developer.android.com/jetpack/compose/ergonomics?hl=ko">https://developer.android.com/jetpack/compose/ergonomics?hl=ko</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>if(kakao)dev2022 모바일: '카카오페이 앱 리빌딩 스토리' 세션 후기</title>
+	  <link>/2023-01-15-if-kakao-Mobile-kakaopay-rebuilding-review</link>
+	  <author></author>
+	  <pubDate>2023-01-15T17:57:13+09:00</pubDate>
+	  <guid>/2023-01-15-if-kakao-Mobile-kakaopay-rebuilding-review</guid>
+	  <description><![CDATA[
+	     <h5 id="세션-내용-요약">세션 내용 요약</h5>
+
+<ol>
+  <li>
+    <p>앱 리빌딩 배경</p>
+
+    <ul>
+      <li>서비스 증가에 따른 코드 품질과 사용성 저하 발생</li>
+      <li>새로운 사용자 경험뿐 아니라, 생산성 강화를 위해 DI, Module화 작업과 UI 컴포넌트 통합을 진행</li>
+    </ul>
+  </li>
+  <li>
+    <p>DI 개선 및 모듈화<br />
+ DI란?<br />
+ Dependency Injection의 준말로, 한국어로는 ‘의존성 주입’이라고 한다. Car라는 클래스와 Engine이라는 클래스가 있다고 하자. Car에는 Engine이 꼭 필요하므로 두 클래스는 의존 관계에 있다고 말할 수 있다. 이것이 의존성이다. 그리고 Car에 Engine을 삽입해야 한다. 이것이 주입이다. 한마디로 필요한 클래스를 자체적으로 생성하지 않고 받아서 사용하는 것이 DI이다.</p>
+
+    <p>카카오페이 앱에서는 Koin 라이브러리를 사용하여 DI를 구현한 상태였으나, 객체들이 올바른 scope 내에서 생성 되었는지 알 수 없어 관리에 어려움을 느꼈다.<br />
+ 타 서비스의 DI 시스템 상황과 컴포넌트 관리 기능을 제공한다는 점을 고려하여 새로운 DI 시스템으로 Hilt를 도입하였다.<br />
+ 서비스 내의 객체들을 올바른 주기로 재사용할 수 있게 해주는 컴포넌트와 Scope Annotation을 이용할 수 있는 장점이 있었다.<br />
+ Koin의 Custom Scope와 Hilt의 Activity Scope가 일치하지 않아 고민했으나, Navigation graph Scope를 사용하여 문제를 해결하였다.<br />
+ <br />
+이전 앱에서는 UI를 담당하는 app 모듈과 대부분의 비즈니스 로직을 가진 core 모듈로 구성되어 있었다.<br />
+ 더 좋은 생산성을 위해 Feature 기반 모듈화를 진행하였다.<br />
+ 크게는 Non-Feature 모듈과 Feature 모듈로 구분하였다.<br />
+ Non-Feature 모듈에는 design-system, core, util로 세분화되어 있으며, core 모듈은 이전과 다르게 통신 혹은 보안을 위한 코드들로 구성했다.<br />
+ Feature 모듈은 money, payment, stock, home으로 세분화 되어 있으며, 이는 독립적인 서비스 기능 모음을 모듈화한 것이다.<br />
+ 이 모듈은 또 presentation, domain, data 레이어로 나누었다.<br />
+ presentation 레이어에는 Activity, Fragment, Viewmodel가,<br />
+ domain 레이어에는 Usecase, Repository Interface, Model이,<br />
+ data 레이어에는 Repository 및 DataSource가 포함되었다.<br />
+ Feature 사이에서 Activity들을 효과적으로 호출하기 위해 인터페이스로 구성된 navigator 모듈을 생성하였다.<br />
+ 이러한 모듈화를 바탕으로 생산성이 증가하여 모듈의 수는 점차 증가하고 있으며 코드량이 많은 모듈이 생김에 따라 빌드 시간도 늘어나는 결과를 보였다.<br />
+ <br />
+UI 컴포넌트를 통일하여 개발과 소통을 위한 비용을 줄이고 사용자 경험 향상 위해 디자인 시스템이 필요하였다.<br />
+Foundation, Component, Module, Template 4가지로 정의하여 작업을 수행하였다.<br />
+디자인 시스템 도입 이전에는 xml을 직접 작성하여 세부 요소 작업을 놓치기 쉬웠으나, 도입 이후에는 CustomView와 Style만으로 UI를 구성할 수 있어 일관된 UI를 제공할 수 있게 되었다.<br />
+또한 확장성을 고려한 CustomView 개발로 개발 편의성이 증가하였다.<br />
+그리고 디자인 시스템 샘플 앱을 만들어 여러 케이스를 쉽게 테스트할 수 있게 환경을 구성하였다.<br />
+WindowCompat 함수 호출을 통해 ViewGroup 영역과 System Bar 영역의 색상이 통일되도록 하여 몰입도 높은 화면을 제공하였다.<br />
+이때 System Bar 영역이 ViewGroup 영역과 겹치지 않도록 view에 inset 값으로 padding을 적용하였다.<br />
+System Bar 활용을 통해 유연한 화면구조 설계와 휴먼 에러 감소라는 이점을 얻게 되었다.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="후기">후기</h4>
+
+<p>먼저, DI에 대한 개념은 알고 있는 상태였다.<br />
+다만 사용해본 적은 없어서 개발 측면에서 어떤 이점이 있는지 어떤 어려움이 있는지는 알지 못했다.<br />
+라이브러리에 따라 객체들의 scope를 관리하는 등의 기능을 제공한다는 것을 알게 되었다.<br />
+그리고 scope 제어를 위해 Navigation graph를 활용할 수 있다는 사실도 알게 되었다.<br />
+<br />
+모듈화 부분은 굉장히 관심있게 봤다.<br />
+코드량이 많아지다 보면 아무래도 유지보수 측면에서 어려움이 생기는데, 모듈화를 통해 어느정도 어려움을 해소할 수 있지 않을까 하는 생각이 들었기 때문이다.<br />
+Presentation, Domain, Data 레이어와 같은 클린 아키텍처 부분은 개념은 들어봤지만 추상적인 내용이 많다보니 아무래도 100% 이해한 것은 아니다.<br />
+그래도 꾸준히 들여다 보며 이해를 해나가고 있는 영역이다.<br />
+모듈화를 통해 결합도를 낮춘다면 테스트 코드도 더 효율적으로 작성할 수 있을 것 같은데, 테스트 코드에 대한 내용은 없어서 아쉽다.<br />
+<br />
+UI 개선 부분은 생각해보지 못했던 부분이었다.<br />
+디자인 영역이라고 생각해서, 이를 활용해서 개발 부분의 이점을 얻을 수 있을 거라곤 생각하지 않았다.<br />
+이번 세션에서 가장 새로운 세상을 깨닫게 해준 부분이었다.<br />
+<br />
+리빌딩 과정을 통해 DI, 모듈화, UI 개선 작업 내용을 들을 수 있었다.<br />
+이미 알고 있었지만 직접 해보진 않았던 내용들도 있었고, 난생 처음 들었던 내용들도 있었다.<br />
+라이브러리 결정 과정과 기타 문제 해결 방안들을 들을 수 있어서 유익했다.<br />
+앱 리빌딩 진행 시 참고하여 진행하면 좋을 듯 하다.</p>
+
+<h5 id="reference">Reference:</h5>
+
+<p><a href="https://youtu.be/Y0szAIW_tFs">카카오페이 앱 리빌딩 스토리 / if(kakao)2022</a>
+<a href="https://developer.android.com/training/dependency-injection">https://developer.android.com/training/dependency-injection</a></p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
