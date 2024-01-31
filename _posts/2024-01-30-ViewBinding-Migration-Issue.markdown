@@ -48,13 +48,13 @@ setContentView() 수행 시 R.layout.activity_xxx 대신 View Binding을 사용�
 #### 문제 해결
 Dialog Theme는 해당 View에 포함된 실제 View의 크기에 따라 공간을 차지하게 되어 있다.   
 그렇다 하더라도 LinearLayout의 width가 고정값이기 때문에 해당 크기에 맞춰 공간을 차지해야 하는데 이 값이 무시되었다.   
-처음엔 View Binding에 문제가 있다고 판단하였는데, 그것이 아니고 overriding된 setContentView() 메소드에 차이가 있었다.   
+처음엔 View Binding에 문제가 있다고 판단하였는데, 그것이 아니고 overloading된 setContentView() 메소드에 차이가 있었다.   
 setContentView(@LayoutRes int)를 수행할 때는 기존에 설정된 레이아웃 매개변수를 그대로 사용하지만, setContentView(View)를 수행할 때는 레이아웃 매개변수가 무시되고 width와 height가 match_parent로 설정된다.   
 (width와 height가 match_parent로 설정된 건 Layout Inspector Tool로 확인할 수 있다)   
 <img src="{{site.baseurl}}/assets/images/2024-01-30-ViewBinding-Migration-Issue_3.jpg" width="100%" height="100%" title="setContentView" alt="Image: setContentView"/>
 이 설명은 Activity.class 파일에서 확인할 수 있다.   
 
-따라서 아래와 같이 inflater를 사용하여 view 객체를 생성한 경우에도 LinearLayout의 width 값이 match_parent로 바뀌어서 View가 다르게 보이게 된다.   
+따라서 아래와 같이 inflater를 사용하여 view 객체를 생성한 경우 setContentView(View) 메소드를 사용하므로 LinearLayout의 width 값이 match_parent로 바뀌어서 View가 다르게 보이게 된다.   
 ```kotlin
 val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 val view = inflater.inflate(R.layout.activity_xxx, null) as View
