@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>Flutter 터치하지 않았는데 onTap 불리는 문제 해결</title>
+    <meta name="description" content="Develop and Write" />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/balloon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="/2024-03-15-Flutter-onTap-Issue" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="15balloon" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Flutter 터치하지 않았는데 onTap 불리는 문제 해결" />
+    <meta property="og:description" content="Develop and Write" />
+    <meta property="og:url" content="/2024-03-15-Flutter-onTap-Issue" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Flutter 터치하지 않았는데 onTap 불리는 문제 해결" />
+    <meta name="twitter:description" content="Develop and Write" />
+    <meta name="twitter:url" content="/2024-03-15-Flutter-onTap-Issue" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "15balloon",
+    "name": "Flutter 터치하지 않았는데 onTap 불리는 문제 해결",
+    "url": "/2024-03-15-Flutter-onTap-Issue",
+    "image": "/assets/images/cover1.jpg",
+    "description": "Develop and Write"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="15balloon" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-android " role="presentation"><a href="/tag/android">Android</a></li>
+        <li class="nav-conference " role="presentation"><a href="/tag/conference">Conference</a></li>
+        <li class="nav-error " role="presentation"><a href="/tag/error">Error</a></li>
+        <li class="nav-flutter " role="presentation"><a href="/tag/flutter">Flutter</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/15balloon">15balloon</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/15balloon.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-test tag-content">
+
+        <header class="post-header">
+            <h1 class="post-title">Flutter 터치하지 않았는데 onTap 불리는 문제 해결</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+                    <a href='/author/15balloon'>15balloon</a>
+                
+            
+            <time class="post-date" datetime="2024-03-15">15 Mar 2024</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/android'>Android</a>,
+                    
+                
+                    
+                       <a href='/tag/error'>Error</a>,
+                    
+                
+                    
+                       <a href='/tag/flutter'>Flutter</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>Card 위젯을 사용해 데이터 목록을 표시하는 레이아웃을 만들었다. <br />
+그리고 하나의 Card 위젯을 선택할 수 있도록 GestureDetector 위젯을 사용했다. <br />
+(이후에 InkWell 위젯도 알게 되었다…!) <br />
+onTap callback 함수를 작성하여 Card 위젯이 선택되면 border를 표시하도록 했다.</p>
+
+<h4 id="이상-현상">이상 현상</h4>
+<p>레이아웃이 포함된 화면으로 전환될 때 빨간 화면이 떴다. <br />
+오류를 보니 (대충) 찬물도 위아래가 있는데 UI가 그려지기도 전에 UI를 변경하자고 우기면 어떡하냐는 내용이었다. <br />
+로그를 찍어 봤는데 단지 화면이 전환되었을 뿐인데 onTap이 불렸다. <br />
+터치한게 아니고 화면이 표시되었을 뿐인데 onTap이 불린 것이다.</p>
+
+<h4 id="문제-해결">문제 해결</h4>
+<p>바로 오류 상황을 구글에 검색해보니 역시나 누군가가 질문한 글이 있었다. <br />
+답변은 다음과 같다. <br />
+onTap은 GestureTapCallback 함수의 한 종류이기 때문에</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Wrong code</span>
+<span class="nl">onTap:</span> <span class="n">somethingFunction</span><span class="o">(),</span>
+</code></pre></div></div>
+<p>이렇게 사용하면 사용자의 Tap 입력없이 바로 함수가 실행된다. <br />
+그러니 다음과 같이 사용해야 한다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Correct code</span>
+<span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span><span class="n">somethingFunction</span><span class="o">()},</span>
+</code></pre></div></div>
+<p>답변을 보고 코드를 보니 정말 저렇게 잘못 작성했다. <br />
+답변대로 작성하여 문제를 해결할 수 있었다.</p>
+
+<p>조금만 생각해보면 onTap은 함수 타입이고 somethingFunction은 void 타입이라 오동작했다는 것을 깨달을 수 있었을 텐데 왜 그 당시에는 그런 생각이 안 떠올랐는지 모르겠다.</p>
+
+<h4 id="conclusion">Conclusion</h4>
+<p>프로젝트 마감 기한이 촉박해서 어쩔 수 없이 아무런 지식이 없는 상태로 당장 Flutter 개발을 시작하게 되었다. <br />
+지금 글을 작성한 시점 기준 Flutter를 시작한지 2주가 되었다. <br />
+그래서 Dart 언어와 Flutter 기초 지식이 너무나도 부족했다. <br />
+그나마 레이아웃 구성이 Jetpack Compose와 유사하다는 것이 위안이다.</p>
+
+<p>Java, Kotlin과 Dart가 어떤 부분이 다른지 아예 모르니 코드를 작성하면서 이게 왜 안 되지 하는 순간이 있었다. <br />
+Dart에서 람다식은 무조건 한 줄로만 작성해야 한다는 것도 이번에 처음 알게 되었다. <br />
+그리고 Dart 언어 특성을 살려서 코드를 작성하는 것 같지 않아서(느낌적인 느낌) 아쉽다. <br />
+유지보수하면서 조금씩 고쳐나가야 겠다.</p>
+
+<p>Dart랑 Flutter 공식 문서가 정말 잘 작성되어 있다. <br />
+어떤 요소를 사용하고 싶은지만 알아내서 공식 문서만 보고 코드를 짜도 괜찮았다. <br />
+아무래도 구글이 출시한 프레임워크라서 그런 것 같다.</p>
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://stackoverflow.com/questions/75600597/why-ontap-function-runs-without-tapping-when-it-have-arguments">Why onTap function runs without tapping when it have arguments?</a></li>
+  <li><a href="https://dart-ko.dev/language/functions">Dart - 함수</a></li>
+</ol>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/15balloon" style="background-image: url(/assets/images/15balloon_profile.png)"><span class="hidden">15balloon's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/15balloon">15balloon</a></h4>
+
+                        
+                            <p> Android Developer</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> Seoul, Republic of Korea</span>
+                            <span class="author-link icon-link"><a href="http://15balloon.github.io/"> 15balloon.github.io/</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=Flutter 터치하지 않았는데 onTap 불리는 문제 해결&amp;url=https://15balloon.github.io2024-03-15-Flutter-onTap-Issue"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://15balloon.github.io2024-03-15-Flutter-onTap-Issue"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://15balloon.github.io2024-03-15-Flutter-onTap-Issue"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/2024-03-13-Flutter-WebView-Issue">
+            <section class="post">
+                <h2>Flutter WebView 흰 화면 문제 해결</h2>
+                <p>회사에서 새로운 프로젝트를 진행하게 되었다. 일단은 안드로이드 앱을 먼저 출시하겠지만 추후 iOS 앱도 출시해야 하기...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">15balloon</a> &copy; 2024</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyllt/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', '', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for 15balloon -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>

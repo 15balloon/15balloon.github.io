@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기</title>
+    <meta name="description" content="Develop and Write" />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/balloon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="15balloon" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기" />
+    <meta property="og:description" content="Develop and Write" />
+    <meta property="og:url" content="/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기" />
+    <meta name="twitter:description" content="Develop and Write" />
+    <meta name="twitter:url" content="/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "15balloon",
+    "name": "DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기",
+    "url": "/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review",
+    "image": "/assets/images/cover1.jpg",
+    "description": "Develop and Write"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="15balloon" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-android " role="presentation"><a href="/tag/android">Android</a></li>
+        <li class="nav-conference " role="presentation"><a href="/tag/conference">Conference</a></li>
+        <li class="nav-error " role="presentation"><a href="/tag/error">Error</a></li>
+        <li class="nav-flutter " role="presentation"><a href="/tag/flutter">Flutter</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/15balloon">15balloon</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/15balloon.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-test tag-content">
+
+        <header class="post-header">
+            <h1 class="post-title">DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+                    <a href='/author/15balloon'>15balloon</a>
+                
+            
+            <time class="post-date" datetime="2023-02-05">05 Feb 2023</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/android'>Android</a>,
+                    
+                
+                    
+                       <a href='/tag/conference'>Conference</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <h5 id="세션-내용-요약">세션 내용 요약</h5>
+
+<ol>
+  <li>
+    <p>적용 배경</p>
+
+    <ul>
+      <li>React-Native에서 Android Native로의 앱 리뉴얼 미션을 부여받음</li>
+      <li>해당 앱이 적은 Spec과 화면을 가졌기에 Trouble Shooting에 부담이 없으리라 판단</li>
+      <li>기존 Project가 View의 onDraw를 사용하는 자체 Framework이었기에 Jetpack Compose 개념 이해가 수월</li>
+    </ul>
+  </li>
+  <li>
+    <p>Jetpack Compose <br />
+ 기존의 Native UI는 명령을 통해 Page를 표시한다. <br />
+ View를 XML로 미리 구성하고, findViewById나 binding으로 View를 불러와서 변화를 명령하는 방식이다. <br />
+ 선언형 Jetpack Compose는 모든 Page 구성요소가 정의 되어 있고, State에 따라서 표시 여부를 결정한다. <br />
+ 그리고 싶은 View를 모두 정의해놓고, State에 맞게 View를 선택적으로 그린다.</p>
+
+    <p>Jetpack Compose를 사용하면 다음과 같은 장점이 있다.</p>
+    <ol>
+      <li>Build 속도가 줄어들어 생산성이 향상한다.</li>
+      <li>APK 크기가 감소한다.<br />
+   1, 2번에 대한 자세한 내용은 <a href="https://developer.android.com/jetpack/compose/ergonomics?hl=ko">Reference 3번</a>을 참조하면 된다.</li>
+      <li>웹뷰와 같은 Native 기능과 Context를 쉽게 사용할 수 있다.</li>
+      <li>Kotlin Code만으로 대부분의 UI 개발이 가능하다는 것도 큰 장점이다. XML과 Kotlin Code를 왕복하면서 개발할 필요 없기 때문에 개발자 입장에서는 더 편하다.</li>
+      <li>RecyclerView와 Adapter 사용 없이 List를 만들 수 있다. RecyclerView를 사용하면 재사용되는 View 처리 등등 신경 써야 할 부분도 많고, 헷갈리는 부분도 많다. 그런데 이것 대신 Jetpack Compose 내에서 편리하게 Row, Column 기능을 사용할 수 있다.</li>
+      <li>데이터(literals) 수정을 하면 Emulator에서 실시간(Live Edit)으로 볼 수 있다.</li>
+      <li>State 변화로 인해 UI 갱신이 일어날 때 UI가 속한 Tree를 전부 탐색하는 것이 아닌, 변경되는 UI만 탐색하기 때문에 가볍다.</li>
+    </ol>
+
+    <p>당연히 단점도 존재하는 데 단점은 다음과 같다.</p>
+    <ol>
+      <li>LifeCycle 대응이 안 된다. Composable 내부에서 LifeCycle 변경 여부를 알아챌 수 없어서, Activity에서 LifeCycle 변경이 일어날 때 Composable에 이를 알려줘야 한다.</li>
+      <li>같은 화면에 있는 Widget이 서로 다른 함수로 이루어져 있다면 변수를 공유할 수 없다. DI, 전역 관리, 매개변수 등을 사용해서 변수를 공유할 수 있도록 해야 한다.</li>
+      <li>같은 Page에 속한 Widget들이 사용하는 State는 Widget의 상위인 Page에서 생성하여 관리한다. 그렇기 때문에 해당 Page가 삭제되면 Widget의 State도 초기화된다. 이처럼 State가 초기화되는 상황에서 값을 유지하기 위해서는 remember, rememberSaveable을 활용해야 한다. State 관리가 제대로 이루어지지 않으면 화면 갱신이 안 되거나, 원하는 데이터를 얻지 못할 수 있다.</li>
+      <li>UI가 Activity Base 구성이 아니기 때문에, Firebase Tracking 활용 시 화면별 Tracking이 어렵다. 화면 진입 시점을 Logging에 추가해야 한다.</li>
+      <li>아키텍처 자료가 부재하다. (2021.11. 발표이므로 이때 기준) MVC, MVVM, Clean Architecture 등 Jetpack Compose 사용과 관련한 아키텍처에 대한 자료를 찾아보기 힘들다.</li>
+      <li>모든 Page가 State로 연결되어 관리되기 때문에 잘못된 구성으로 인한 오류 발생 여지가 존재한다. 논리적으로 구성만 잘 한다면 문제가 없겠지만, 세상에 완벽한 건 없는 법이다.</li>
+    </ol>
+
+    <p>Jetpack Compose 사용 시 주의해야 할 점은 다음과 같다.</p>
+    <ol>
+      <li>State가 변경되면 해당 State를 사용하는 전체 Composable 함수가 Recomposition되는게 아니라, 해당 함수 내에서 변경된 State를 사용하는 Composable만 Recomposition된다.</li>
+      <li>State로 Model을 사용할 때 Model의 파라미터만 변경이 된 경우에는 Recomposition되지 않는다. Model 자체가 변경되어야 Recomposition된다.</li>
+      <li>Composable은 여러 번 호출될 수 있기 때문에, 내부에서 한 번만 수행되어야 하는 함수들은 LaunchedEffect 등을 사용하여 호출이 다량 일어나지 않도록 해야 한다.</li>
+      <li>Composable 내부에서는 변수 값이 변경되어도 Recomposition 되지 않기 때문에, 변수에 따라서 UI가 변경되어야 하는 경우에는 State를 사용해야 한다.</li>
+      <li>Composable 내부에서 변수 사용 시 remember를 사용하지 않으면 Recomposition 과정에서 변수가 재생성된다. 객체 또한 마찬가지다.</li>
+      <li>Parcelable, Serializable Object를 사용했을 때 Object 내부 값이 변경되지 않으면 Recomposition되지 않는다.</li>
+    </ol>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="후기">후기</h4>
+
+<p>Jetpack에 Compose라는 선언형 UI Framework가 있다는 사실은 처음 알았다. <br />
+본 세션은 Compose에 대한 기본 개념을 이미 알고 있다는 것을 전제로 이루어졌기 때문에 Android Developer 문서를 간단하게 읽고 시청하였다. <br />
+<br />
+실제 서비스를 적용한 후기이다 보니 세세한 장단점을 알 수 있어서 좋았다. <br />
+코드를 짜면서 겪는 사소한 일화들이 담긴 세션이었다. <br />
+다만, Jetpack Compose를 처음 접한 사람에겐 다소 불친절한 세션이었다. <br />
+아무래도 기본 개념을 설명하기엔 시간이 촉박해서 어쩔 수 없었을 것 같다. <br />
+<br />
+XML을 작성하지 않고 View를 구성할 수 있다는 점이 굉장히 매력적이었다. <br />
+세션에서 장점으로 언급한 것과 같이, XML과 코드를 번갈아 가며 분석하는 것은 피곤한 일이다. <br />
+Layout뿐만 아니라, Selector, Style 등도 같이 봐야 하니 번거롭다. <br />
+그런데 이러한 파일없이 코드로만 작성하여 View를 편리하게 구현할 수 있으니 흥미로웠다. <br />
+간단한 앱을 개발할 때는 Jetpack Compose 사용을 고려해봐도 괜찮을 것 같다.</p>
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://deview.kr/2021/sessions/478">Android Jetpack Compose 실제 서비스 적용 후기 / DEVIEW 2021</a></li>
+  <li><a href="https://developer.android.com/jetpack/compose/documentation?hl=ko">https://developer.android.com/jetpack/compose/documentation?hl=ko</a></li>
+  <li><a href="https://developer.android.com/jetpack/compose/ergonomics?hl=ko">https://developer.android.com/jetpack/compose/ergonomics?hl=ko</a></li>
+</ol>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/15balloon" style="background-image: url(/assets/images/15balloon_profile.png)"><span class="hidden">15balloon's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/15balloon">15balloon</a></h4>
+
+                        
+                            <p> Android Developer</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> Seoul, Republic of Korea</span>
+                            <span class="author-link icon-link"><a href="http://15balloon.github.io/"> 15balloon.github.io/</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기&amp;url=https://15balloon.github.io2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://15balloon.github.io2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://15balloon.github.io2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/2023-02-19-Android-Dev-Summit-Android13-review">
+            <section class="post">
+                <h2>Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기</h2>
+                <p>##### 세션 내용 요약 1. Android 13 버전의 변화 Android 13 버전이 릴리즈됨에 따라 모든...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/2023-01-15-if-kakao-Mobile-kakaopay-rebuilding-review">
+            <section class="post">
+                <h2>if(kakao)dev2022 모바일: '카카오페이 앱 리빌딩 스토리' 세션 후기</h2>
+                <p>세션 내용 요약 앱 리빌딩 배경 서비스 증가에 따른 코드 품질과 사용성 저하 발생 새로운...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">15balloon</a> &copy; 2024</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyllt/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', '', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for 15balloon -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기</title>
+    <meta name="description" content="Develop and Write" />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/balloon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="/2023-02-19-Android-Dev-Summit-Android13-review" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="15balloon" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기" />
+    <meta property="og:description" content="Develop and Write" />
+    <meta property="og:url" content="/2023-02-19-Android-Dev-Summit-Android13-review" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기" />
+    <meta name="twitter:description" content="Develop and Write" />
+    <meta name="twitter:url" content="/2023-02-19-Android-Dev-Summit-Android13-review" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "15balloon",
+    "name": "Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기",
+    "url": "/2023-02-19-Android-Dev-Summit-Android13-review",
+    "image": "/assets/images/cover1.jpg",
+    "description": "Develop and Write"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="15balloon" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-android " role="presentation"><a href="/tag/android">Android</a></li>
+        <li class="nav-conference " role="presentation"><a href="/tag/conference">Conference</a></li>
+        <li class="nav-error " role="presentation"><a href="/tag/error">Error</a></li>
+        <li class="nav-flutter " role="presentation"><a href="/tag/flutter">Flutter</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/15balloon">15balloon</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/15balloon.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-test tag-content">
+
+        <header class="post-header">
+            <h1 class="post-title">Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+                    <a href='/author/15balloon'>15balloon</a>
+                
+            
+            <time class="post-date" datetime="2023-02-19">19 Feb 2023</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/android'>Android</a>,
+                    
+                
+                    
+                       <a href='/tag/conference'>Conference</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <h5 id="세션-내용-요약">세션 내용 요약</h5>
+
+<ol>
+  <li>Android 13 버전의 변화 <br />
+ Android 13 버전이 릴리즈됨에 따라 모든 앱에 영향을 미치는 사항과 SDK 버전이 33 이상인 경우에만 영향이 미치는 사항이 생겼다. <br />
+ 모든 앱에 영향을 미치는 사항은 사용자에게 앱의 백그라운드 동작을 알리고 이를 제어할 수 있도록 하기 위함이다.
+    <ol>
+      <li>모든 앱에 영향을 미치는 사항
+        <ul>
+          <li>사용자가 포그라운드 서비스(이하 FGS)를 종료할 수 있도록 Task Manager 제공한다. <br />
+ FGS가 실행 중이라면 이를 새로운 인터페이스에서 실행 중인 앱을 보고 종료할 수 있도록 한다. <br />
+ adb 커맨드를 사용하여 FGS를 종료할 때와 동일한 상황을 테스트할 수 있다.
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell cmd activity stop-app PACKAGE_NAME
+</code></pre></div>            </div>
+            <p>force-stop 커맨드와도 유사한데, FGS Task Manager와는 다른 점이 있다.</p>
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell cmd activity force-stop PACKAGE_NAME
+</code></pre></div>            </div>
+            <p>FGS Task Manager로 인한 앱 종료 시에는 기록(History)에서 앱이 삭제되지 않고, 예약된 Job이 취소되지 않는다. <br />
+ <img src="/assets/images/2023-02-19-Android13_1.jpg" width="100%" height="100%" title="Effects of closure" alt="Image: Effects of closure" />
+ 그렇기에 앱에 장기적인 영향이 덜 미친다. <br />
+ FGS Task Manager에 의해 종료된 앱은 콜백을 받지는 않으나, 앱 시작 시 ApplicationExitInfo를 통해 당시 상황을 알 수 있다. <br />
+ 이를 통해 사용자에 의한 종료인지 여부와 오류, ANR, Exception, 메모리 부족 문제 등을 확인할 수 있다. <br />
+ FGS Task Manager를 통해 데이터 손실이 최소화되도록 종료 명령을 처리하고, FGS가 정말 앱에 필요한지 확인해야 한다고 당부했다.</p>
+          </li>
+          <li>백그라운드 액티비티가 제한된 앱 대기 버킷(Restricted App Standby Bucket)으로 이동하기 까지 대기하는 기간이 45일에서 8일로 짧아졌다. <br />
+ 제한된 앱 대기 버킷은 Android 12에서 도입되었는데, Job들이 하루에 10분 동안만 수행이 되고, 긴급 Job들도 더 적게 실행이 되며, 알람도 하나만 호출할 수 있도록 하는 기능이다. <br />
+ 아래 코드를 통해, 앱이 해당 상태로 변경된 경우 필수적인 Job을 예약할 수 있도록 지원할 수 있다.
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">val</span> <span class="py">usageStatsManager</span> <span class="p">=</span> <span class="n">getSystemService</span><span class="p">&lt;</span><span class="nc">UsageStatsManager</span><span class="p">&gt;()</span>
+ <span class="n">usageStatsManager</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="n">appStandbyBucket</span> <span class="p">==</span> <span class="nc">STANDBY_BUCKET_RESTRICTED</span><span class="p">)</span> <span class="p">{</span>
+  <span class="o">..</span><span class="p">.</span>
+<span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>            </div>
+            <p>Job과 알람을 실행할 때 앱 상태를 로깅(Logging)해야 예상치 못한 동작들을 추적할 수 있다. <br />
+ 앱 대기 버킷 상태도 adb로 테스트할 수 있다.</p>
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell am set-standby-bucket PACKAGE_NAME 45
+</code></pre></div>            </div>
+            <p>앱이 실행 중인 상태에서는 테스트 할 수 없다. <br />
+ 앱이 상호작용 중이기 때문에 버킷에서 빠져 나가기 때문이다. <br />
+ 앱이 제한된 버킷 상태로 가지 않으려면 해당 앱에 대한 상호작용과 함께 실행 가능한 알람을 받도록 사용자의 동의를 얻어야 한다. <br />
+ Android 13 부터는 권한을 얻어야 해당 작업을 수행할 수 있다. <br />
+ 만약 사용자가 이 권한을 거부한다면 다시는 이 권한을 요청하지 않는다. <br />
+ 앱 삭제 후 재설치하거나, 앱이 SDK 버전 33에 타겟팅된 경우는 예외이다. <br />
+ AndroidX 함수를 통해 앱에서 알림이 활성화 되었는지 확인할 수 있다.</p>
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">val</span> <span class="py">notificationsManagerCompat</span> <span class="p">=</span> 
+  <span class="nc">NotificationManagerCompat</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+ <span class="n">notificationsManagerCompat</span><span class="p">.</span><span class="nf">areNotificationsEnabled</span><span class="p">()</span>
+</code></pre></div>            </div>
+            <p>adb 커맨드를 통해 권한을 삭제하여 테스트할 수 있다.</p>
+            <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb shell pm revoke PACKAGE_NAME
+ android.permission.POST_NOTIFICATIONS
+ adb shell pm clear-permission-flags PACKAGE_NAME \
+android.permission.POST_NOTIFICATIONS user-set
+ adb shell pm clear-permission-flags PACKAGE_NAME \
+android.permission.POST_NOTIFICATIONS user-fixed
+</code></pre></div>            </div>
+          </li>
+          <li>앱이 SDK 버전 33에 타겟팅된 경우, 인텐트를 명시적으로 지정하여 인텐트 필터 요소와 일치하는 경우에만 전달되도록 동작이 변경되었다. <br />
+ 다른 앱에서 내부 코드를 갑자기 트리거하는 오류를 막기 위해 BroadcastReceiver에 허용되지 않은 intent.action을 방지하는 코드를 추가해야 한다.
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">if</span> <span class="p">(</span><span class="n">intent</span><span class="p">.</span><span class="n">action</span><span class="p">.</span><span class="nf">equals</span><span class="p">(</span><span class="n">allowedAction</span><span class="p">))</span> <span class="p">{</span>
+<span class="o">..</span><span class="p">.</span>
+ <span class="p">}</span>
+</code></pre></div>            </div>
+          </li>
+          <li>클립보드 콘텐츠를 시각적으로 확인하는 기능이 추가되었다. <br />
+ 이에 따라 개인 정보나 신용카드 정보 등 민감한 정보들을 복사했을 때 클립보드에 보여지지 않도록 처리해야 한다.
+            <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// SDK version 33 or higher</span>
+ <span class="n">clipData</span><span class="p">.</span><span class="nf">apply</span> <span class="p">{</span>
+<span class="n">description</span><span class="p">.</span><span class="n">extras</span> <span class="p">=</span> <span class="nc">PersistableBundle</span><span class="p">().</span><span class="nf">apply</span> <span class="p">{</span>
+  <span class="nf">putBoolean</span><span class="p">(</span><span class="nc">ClipDescription</span><span class="p">.</span><span class="nc">EXTRA_IS_SENSITIVE</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">}</span>
+ <span class="p">}</span>
+ <span class="c1">// SDK version lower than 33</span>
+ <span class="n">clipData</span><span class="p">.</span><span class="nf">apply</span> <span class="p">{</span>
+<span class="n">description</span><span class="p">.</span><span class="n">extras</span> <span class="p">=</span> <span class="nc">PersistableBundle</span><span class="p">().</span><span class="nf">apply</span> <span class="p">{</span>
+  <span class="nf">putBoolean</span><span class="p">(</span><span class="s">"android.content.extra_IS_SENSITIVE"</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>            </div>
+          </li>
+        </ul>
+      </li>
+      <li>SDK 버전 33에서 변화한 동작(Privacy를 중심으로)
+        <ul>
+          <li>
+            <p>WiFi 주변 기기(Nearby WiFi Devices) 권한을 도입했다. <br />
+ 이전 안드로이드 버전에서는 주변 기기 탐색을 위해 WiFi Manager 클래스를 사용해야 했고, 위치 권한도 필요했다. <br />
+ 안드로이드 13에서는 NEARBY_WIFI_DEVICES 런타임 권한을 사용하여 Wifi Manager의 메소드나 위치 권한 없이 주변 기기를 쉽게 탐색할 수 있다.</p>
+
+            <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span>
+<span class="na">android:name=</span><span class="s">"android.permission.NEARBY_WIFI_DEVICES"</span>
+<span class="na">android:usesPermissionFlags=</span><span class="s">"neverForLocation"</span> <span class="nt">/&gt;</span>
+</code></pre></div>            </div>
+            <p>앱을 SDK 버전 33에 타겟팅하는 경우, 주변 WiFi 기기 탐색 시 NEARBY_WIFI_DEVICES 권한을 요청하지 않는다면 많은 Exception을 일으키게 되니 이 점을 유의해야 한다.</p>
+          </li>
+          <li>미디어 권한이 세분화되었다. <br />
+ 이에 따라 READ_EXTERNAL_STORAGE 권한 대신 미디어 종류에 따라 다음과 같은 권한을 요청해야 한다. <br />
+ <img src="/assets/images/2023-02-19-Android13_2.jpg" width="100%" height="100%" title="Granular media permissions" alt="Image: Granular media permissions" /></li>
+          <li>
+            <p>생체 신호 센서(Body sensor)를 백그라운드에서 사용하기 위해 허용해야 하는 권한이 추가되었다.</p>
+
+            <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span>
+<span class="na">android:name=</span><span class="s">"android.permission.BODY_SENSORS_BACKGROUND"</span> <span class="nt">/&gt;</span>
+</code></pre></div>            </div>
+          </li>
+          <li>더 이상 SDK에 포함되지 않는 인터페이스들이 있다. <br />
+ 해당 인터페이스는 다음 4개이며, 대체 인터페이스를 사용하면 된다. <br />
+ <img src="/assets/images/2023-02-19-Android13_3.jpeg" width="100%" height="100%" title="Non-SDK interfaces" alt="Image: Non-SDK interfaces" /></li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h4 id="후기">후기</h4>
+
+<p>최근 여러 기종에 대한 Android 13 업그레이드가 적용되면서 회사에서 서비스 중이던 한 모바일 앱에 크고 작은 문제들이 발생했었다. <br />
+그런데 이에 대한 대비가 안 되어 있어, 급하게 수정 작업을 진행하여 배포가 이루어졌다고 한다. <br />
+문제가 해결된 이후에 해당 모바일 앱의 유지보수 업무가 우리 팀으로 이관되면서 안드로이드 버전에 따른 앱 마이그레이션 사항을 살펴보게 되었다. <br />
+안드로이드 개발자임에도 안드로이드 버전에 따른 변경 사항을 잘 알지 못했던 것은 지금까지 TV 앱 개발을 진행해왔기 때문이다. <br />
+특히나 일반 TV 앱이 아니고, 특정 셋탑에 종속되는 앱이었기 때문에 더욱 관심도가 떨어져 있었다. <br />
+아무리 TV 앱을 개발한다지만 어떻게 안드로이드 관련 최신 내용을 공부하지 않았냐고 묻는다면 딱히 할 말이 없다. <br />
+지금이라도 하고자 하니 따뜻하게 바라봐 주길 바란다. <br />
+<br />
+일단 정리한 내용은 당장 주요하게 봐야 하는 것들이다. <br />
+생략된 내용은 추후에 정리하고자 한다. <br />
+‘모든 앱에 영향을 미치는 사항’은 뜬금없이 발생하는 오류를 막기 위해 꼭 숙지해야 하는 내용이라 주의 깊게 들었다. <br />
+일단은 인텐트 관련 내용 말고는 유지보수 시 신경 써야 하는 내용은 없긴 했다. <br />
+그래도 FGS와 버킷 관련 내용은 자칫하면 앱에 영향을 크게 미칠 수 있는 것들이라, 최대한 꼼꼼히 살펴보았다. <br />
+특히 버킷 관련 내용은 처음 듣는 내용이라 공식 문서를 읽었다. <br />
+안정적인 앱 서비스를 위해 버킷 관련 예외 처리가 꼭 필요할 듯하다. <br />
+권한 관련 추가 내용은 꼭 숙지해야 하는 사항이기에 세션에서 소개한 세부 세션을 들어볼 계획이다. <br />
+<br />
+Android 14의 개발자 프리뷰가 이미 공개되었고, 곧 베타 버전 공개도 예정되어 있으니 앞으로 이를 주의 깊게 살펴볼 계획이다. <br />
+Android 13의 변경 사항은 늦게 알게 되었지만, Android 14는 미리 알아보고 준비해서 안정적인 서비스를 제공하도록 노력할 것이다.</p>
+
+<hr />
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://youtu.be/wBx3-ZObxY8?list=PLWz5rJ2EKKc8PO99T1QQLrPAJILqxJXW6">Migrate Your Apps to Android 13</a></li>
+</ol>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/15balloon" style="background-image: url(/assets/images/15balloon_profile.png)"><span class="hidden">15balloon's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/15balloon">15balloon</a></h4>
+
+                        
+                            <p> Android Developer</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> Seoul, Republic of Korea</span>
+                            <span class="author-link icon-link"><a href="http://15balloon.github.io/"> 15balloon.github.io/</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기&amp;url=https://15balloon.github.io2023-02-19-Android-Dev-Summit-Android13-review"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://15balloon.github.io2023-02-19-Android-Dev-Summit-Android13-review"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://15balloon.github.io2023-02-19-Android-Dev-Summit-Android13-review"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/2023-04-20-Android14-Behavior-changes-all-apps-summarize">
+            <section class="post">
+                <h2>Android 14 Behavior changes: all apps 정리</h2>
+                <p>이 포스트에서는 targetSdkVersion과 상관없이 Android 14에서 작동하는 모든 앱들에 영향을 미치는 주요 동작 변화(behavior changes)를...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review">
+            <section class="post">
+                <h2>DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기</h2>
+                <p>세션 내용 요약 적용 배경 React-Native에서 Android Native로의 앱 리뉴얼 미션을 부여받음 해당 앱이 적은...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">15balloon</a> &copy; 2024</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyllt/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', '', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for 15balloon -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>

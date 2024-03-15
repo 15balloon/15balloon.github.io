@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>15balloon.github.io/</title>
+   
+   <link>https://15balloon.github.io</link>
+   <description>Develop and Write</description>
+   <language>ko-KR</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Flutter 터치하지 않았는데 onTap 불리는 문제 해결</title>
+	  <link>/2024-03-15-Flutter-onTap-Issue</link>
+	  <author></author>
+	  <pubDate>2024-03-15T21:01:37+09:00</pubDate>
+	  <guid>/2024-03-15-Flutter-onTap-Issue</guid>
+	  <description><![CDATA[
+	     <p>Card 위젯을 사용해 데이터 목록을 표시하는 레이아웃을 만들었다. <br />
+그리고 하나의 Card 위젯을 선택할 수 있도록 GestureDetector 위젯을 사용했다. <br />
+(이후에 InkWell 위젯도 알게 되었다…!) <br />
+onTap callback 함수를 작성하여 Card 위젯이 선택되면 border를 표시하도록 했다.</p>
+
+<h4 id="이상-현상">이상 현상</h4>
+<p>레이아웃이 포함된 화면으로 전환될 때 빨간 화면이 떴다. <br />
+오류를 보니 (대충) 찬물도 위아래가 있는데 UI가 그려지기도 전에 UI를 변경하자고 우기면 어떡하냐는 내용이었다. <br />
+로그를 찍어 봤는데 단지 화면이 전환되었을 뿐인데 onTap이 불렸다. <br />
+터치한게 아니고 화면이 표시되었을 뿐인데 onTap이 불린 것이다.</p>
+
+<h4 id="문제-해결">문제 해결</h4>
+<p>바로 오류 상황을 구글에 검색해보니 역시나 누군가가 질문한 글이 있었다. <br />
+답변은 다음과 같다. <br />
+onTap은 GestureTapCallback 함수의 한 종류이기 때문에</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Wrong code</span>
+<span class="nl">onTap:</span> <span class="n">somethingFunction</span><span class="o">(),</span>
+</code></pre></div></div>
+<p>이렇게 사용하면 사용자의 Tap 입력없이 바로 함수가 실행된다. <br />
+그러니 다음과 같이 사용해야 한다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Correct code</span>
+<span class="nl">onTap:</span> <span class="o">()</span> <span class="o">{</span><span class="n">somethingFunction</span><span class="o">()},</span>
+</code></pre></div></div>
+<p>답변을 보고 코드를 보니 정말 저렇게 잘못 작성했다. <br />
+답변대로 작성하여 문제를 해결할 수 있었다.</p>
+
+<p>조금만 생각해보면 onTap은 함수 타입이고 somethingFunction은 void 타입이라 오동작했다는 것을 깨달을 수 있었을 텐데 왜 그 당시에는 그런 생각이 안 떠올랐는지 모르겠다.</p>
+
+<h4 id="conclusion">Conclusion</h4>
+<p>프로젝트 마감 기한이 촉박해서 어쩔 수 없이 아무런 지식이 없는 상태로 당장 Flutter 개발을 시작하게 되었다. <br />
+지금 글을 작성한 시점 기준 Flutter를 시작한지 2주가 되었다. <br />
+그래서 Dart 언어와 Flutter 기초 지식이 너무나도 부족했다. <br />
+그나마 레이아웃 구성이 Jetpack Compose와 유사하다는 것이 위안이다.</p>
+
+<p>Java, Kotlin과 Dart가 어떤 부분이 다른지 아예 모르니 코드를 작성하면서 이게 왜 안 되지 하는 순간이 있었다. <br />
+Dart에서 람다식은 무조건 한 줄로만 작성해야 한다는 것도 이번에 처음 알게 되었다. <br />
+그리고 Dart 언어 특성을 살려서 코드를 작성하는 것 같지 않아서(느낌적인 느낌) 아쉽다. <br />
+유지보수하면서 조금씩 고쳐나가야 겠다.</p>
+
+<p>Dart랑 Flutter 공식 문서가 정말 잘 작성되어 있다. <br />
+어떤 요소를 사용하고 싶은지만 알아내서 공식 문서만 보고 코드를 짜도 괜찮았다. <br />
+아무래도 구글이 출시한 프레임워크라서 그런 것 같다.</p>
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://stackoverflow.com/questions/75600597/why-ontap-function-runs-without-tapping-when-it-have-arguments">Why onTap function runs without tapping when it have arguments?</a></li>
+  <li><a href="https://dart-ko.dev/language/functions">Dart - 함수</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Flutter WebView 흰 화면 문제 해결</title>
+	  <link>/2024-03-13-Flutter-WebView-Issue</link>
+	  <author></author>
+	  <pubDate>2024-03-13T23:14:13+09:00</pubDate>
+	  <guid>/2024-03-13-Flutter-WebView-Issue</guid>
+	  <description><![CDATA[
+	     <p>회사에서 새로운 프로젝트를 진행하게 되었다. <br />
+일단은 안드로이드 앱을 먼저 출시하겠지만 추후 iOS 앱도 출시해야 하기 때문에 Flutter로 개발하기로 했다. <br />
+이 프로젝트는 PG사 결제 연동도 구현해야 하는데, 결제 기능이 WebView를 통해 이루어지고 있어서 <strong>webview_flutter</strong> 라이브러리를 사용해서 개발을 하였다.</p>
+
+<h4 id="이상-현상">이상 현상</h4>
+<p>결제 모듈을 앱에 붙여서 테스트를 진행하였는데, 다른 앱으로 전환했다가 다시 앱에 진입하면 <strong>WebView가 흰 화면으로 보여지는 문제</strong>가 발생했다. <br />
+로그를 찍어 살펴보니 다시 앱에 진입할 때 WebView가 두 번씩 reload 되고 있는데 이게 문제인건지 알 수가 없었다. <br />
+그래서 구글 검색을 해보니 Flutter Github의 Issue 탭에 올라온 글을 발견할 수 있었다.</p>
+
+<h4 id="문제-해결">문제 해결</h4>
+<p>webview_flutter 라이브러리 사용 시 Android 14 버전을 가진 삼성 기기에서 흰 화면이 표시되는 문제가 있다는 것을 어떤 사람이 리포트한 것이다. <br />
+갤럭시 S23에 Android 14가 정식 배포된게 11월인데 글이 11월 말에 올라왔으니 거의 바로 리포트된 셈이다. <br />
+글을 쭉 읽으면 삼성에도 이 문제를 알렸지만 아직까지도 별다른 대응은 없는 것을 확인할 수 있다. <br />
+<em>mxnortal</em>이라는 유저가 임시 해결 방안을 올려놓았는데, 이를 적용하여 문제를 해결할 수 있었다. <br />
+코드를 살펴보면 다음과 같다.</p>
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@override</span>    
+<span class="kt">void</span> <span class="nf">didChangeAppLifecycleState</span><span class="p">(</span><span class="n">AppLifecycleState</span> <span class="n">state</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">AppLifecycleState</span><span class="o">.</span><span class="na">resumed</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">_shouldReloadWebView</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">_shouldReloadWebView</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">Platform</span><span class="o">.</span><span class="na">isAndroid</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kd">var</span> <span class="n">androidInfo</span> <span class="o">=</span> <span class="n">await</span> <span class="n">DeviceInfoPlugin</span><span class="o">().</span><span class="na">androidInfo</span><span class="o">;</span>
+            <span class="kd">var</span> <span class="n">sdkInt</span> <span class="o">=</span> <span class="n">androidInfo</span><span class="o">.</span><span class="na">version</span><span class="o">.</span><span class="na">sdkInt</span><span class="o">;</span>
+            <span class="kd">var</span> <span class="n">manufacturer</span> <span class="o">=</span> <span class="n">androidInfo</span><span class="o">.</span><span class="na">manufacturer</span><span class="o">;</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">sdkInt</span> <span class="o">==</span> <span class="mi">34</span> <span class="o">&amp;&amp;</span> <span class="n">manufacturer</span> <span class="o">==</span> <span class="s">'samsung'</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+                    <span class="n">_isInProgress</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">});</span>
+
+                <span class="n">Future</span><span class="o">.</span><span class="na">delayed</span><span class="o">(</span><span class="kd">const</span> <span class="n">Duration</span><span class="o">(</span><span class="nl">milliseconds:</span> <span class="mi">300</span><span class="o">),</span> <span class="o">()</span> <span class="o">{</span>
+                    <span class="n">setState</span><span class="o">(()</span> <span class="o">{</span>
+                        <span class="n">_isInProgress</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                    <span class="o">});</span>
+                <span class="o">});</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">_</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nd">@override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="o">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">_isInProgress</span>
+      <span class="o">?</span> <span class="kd">const</span> <span class="n">SizedBox</span><span class="o">.</span><span class="na">shrink</span><span class="o">()</span>
+      <span class="o">:</span> <span class="n">WebViewWidget</span><span class="o">();</span>
+</code></pre></div></div>
+<p>onResume 상태가 된 경우, 사용하는 기기가 삼성 기기이면서 Android 14 버전이면 빈 widget을 그렸다가 WebView를 그린다. <br />
+이렇게 코드를 수정하면 다른 앱으로 전환 후에 다시 돌아와도 WebView가 잘 보이는 것을 확인할 수 있다.</p>
+
+<h4 id="conclusion">Conclusion</h4>
+<p>삼성 기기만의 문제일 것이라고는 생각도 못해서 빠르게 해결하지는 못했다. <br />
+Flutter도 처음이었고, 결제 모듈 연동도 처음이어서 코드에 문제가 있지 않을까 라는 생각이 먼저 들었기 때문이다. <br />
+다행히 Issue에 리포트된 사항이었고, 임시 해결 방안까지 있어서 해결할 수 있었다. <br />
+물론 이후에 POST 방식으로 데이터를 전송함과 동시에 페이지를 여는 기능이 필요해져서 <strong>flutter_inappwebview</strong> 라이브러리를 사용하게 되어 이 해결 방안을 사용하게 되진 않았지만 말이다.</p>
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://github.com/flutter/flutter/issues/139039">Samsung phones running Android 14 stops drawing platform views on resume</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

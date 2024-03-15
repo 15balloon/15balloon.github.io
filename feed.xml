@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>15balloon - Articles</title>
+    <description>Develop and Write</description>
+    <link>
+    https://15balloon.github.io</link>
+    
+      
+      <item>
+        <title>Flutter 터치하지 않았는데 onTap 불리는 문제 해결</title>
+        
+          <description>&lt;p&gt;Card 위젯을 사용해 데이터 목록을 표시하는 레이아웃을 만들었다. &lt;br /&gt;
+그리고 하나의 Card 위젯을 선택할 수 있도록 GestureDetector 위젯을 사용했다. &lt;br /&gt;
+(이후에 InkWell 위젯도 알게 되었다…!) &lt;br /&gt;
+onTap callback 함수를 작성하여 Card 위젯이 선택되면 border를 표시하도록 했다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 15 Mar 2024 21:01:37 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2024-03-15-Flutter-onTap-Issue</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2024-03-15-Flutter-onTap-Issue</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Flutter WebView 흰 화면 문제 해결</title>
+        
+          <description>&lt;p&gt;회사에서 새로운 프로젝트를 진행하게 되었다. &lt;br /&gt;
+일단은 안드로이드 앱을 먼저 출시하겠지만 추후 iOS 앱도 출시해야 하기 때문에 Flutter로 개발하기로 했다. &lt;br /&gt;
+이 프로젝트는 PG사 결제 연동도 구현해야 하는데, 결제 기능이 WebView를 통해 이루어지고 있어서 &lt;strong&gt;webview_flutter&lt;/strong&gt; 라이브러리를 사용해서 개발을 하였다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 13 Mar 2024 23:14:13 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2024-03-13-Flutter-WebView-Issue</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2024-03-13-Flutter-WebView-Issue</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>View Binding Migration 문제 해결</title>
+        
+          <description>&lt;p&gt;회사에 대략 6년 정도 된 앱이 하나 있는데, 그 앱을 담당했던 분이 퇴사하면서 내가 그 앱의 담당자가 되었다. &lt;br /&gt;
+전 담당자분은 앱 개발자는 아니었지만, 개발하셨던 것 같다. &lt;br /&gt;
+(타 부서라 잘 몰랐고, 그래서 이런 앱이 있는지도 몰랐다) &lt;br /&gt;
+아무튼 오래된 앱이고 개발자의 전문 분야가 앱이 아니다 보니 전체적으로 기술이 낡아 있었다. &lt;br /&gt;
+앱 전체가 Java로 되어 있었고, View Binding이나 Retrofit2도 사용하지 않았다. &lt;br /&gt;
+이 앱 담당자가 되었을 때부터 기술을 조금이라도 최신화하고 싶었지만, 진행하는 주 프로젝트가 있었고 이건 서브였기 때문에 언젠가 틈이 나기만을 기다렸다. &lt;br /&gt;
+그러다 이번에 시간이 조금 나서 일부 코드를 Kotlin으로의 Migration과 View Binding을 사용하도록 수정하는 작업을 진행하였다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 30 Jan 2024 23:19:59 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2024-01-30-ViewBinding-Migration-Issue</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2024-01-30-ViewBinding-Migration-Issue</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Clean Architecture 알아보기</title>
+        
+          <description>&lt;p&gt;OlymPos 프로젝트를 시작하면서 공부해야 겠다고 마음먹은 것들이 많았는데, 그중 하나가 클린 아키텍처다. &lt;br /&gt;
+다들 클린 아키텍처 클린 아키텍처 하니 이게 도대체 뭔진 몰라도 공부해봐야 겠다는 생각이 들었다. &lt;br /&gt;
+기본적인 Layered Architecture(계층 아키텍처)와 Clean Architecture(클린 아키텍처)의 개념과 이 둘의 차이점을 알아볼 것이다. &lt;br /&gt;
+또한 아키텍처를 사용하는 이유와 아키텍처 선택 기준에 대하여 생각해보고 이를 정리하고자 한다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 05 Jan 2024 23:38:02 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2024-01-05-Clean-Architecture</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2024-01-05-Clean-Architecture</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Kotlin Coroutines 정리: 2</title>
+        
+          <description>&lt;h4 id=&quot;launch--async&quot;&gt;Launch &amp;amp; Async&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;launch - 새로운 Coroutine을 시작하며 호출자에게 결과를 반환하지 않는다.&lt;/li&gt;
+  &lt;li&gt;async - 새로운 Coroutine을 시작하며 &lt;em&gt;await&lt;/em&gt;라는 suspend 함수로 결과를 반환할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        
+        <pubDate>Sat, 23 Sep 2023 23:29:52 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-09-23-Kotlin-Coroutines-2</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-09-23-Kotlin-Coroutines-2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Kotlin Coroutines 정리: 1</title>
+        
+          <description>&lt;p&gt;Kotlin을 사용해 Android 앱 개발을 하는 사람이라면 비동기적으로 코드를 실행시키기 위해 Coroutine 한 번쯤은 다 써봤을 것이다. &lt;br /&gt;
+Coroutine을 사용해보았지만 기본 내용만 알고 Channel이나 Flow와 같은 심화 내용은 잘 모르는 사람도 많을 것이다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 22 Sep 2023 23:20:06 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-09-22-Kotlin-Coroutines-1</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-09-22-Kotlin-Coroutines-1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Jetpack Compose Navigation 정리</title>
+        
+          <description>&lt;p&gt;이 포스트는 Jetpack Compose Navigation에 대한 간단한 내용을 기술한다. &lt;br /&gt;
+자세한 내용은 하단의 Reference 참조.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 21 Sep 2023 23:46:57 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-09-21-Jetpack-Compose-Navigation</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-09-21-Jetpack-Compose-Navigation</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Android 14 Behavior changes: all apps 정리</title>
+        
+          <description>&lt;p&gt;이 포스트에서는 targetSdkVersion과 상관없이 Android 14에서 작동하는 모든 앱들에 영향을 미치는 주요 동작 변화(behavior changes)를 다룬다. &lt;br /&gt;
+이 변화들은 안드로이드 플랫폼의 성능, 보안 그리고 사용자 경험성 향상시키기 위해 도입되었다. &lt;br /&gt;
+안드로이드 개발자라면, Android 14에서 앱을 테스트해야 하고, 이러한 변화를 지원하기 위해 필요한 수정을 해야 한다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 20 Apr 2023 00:35:13 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-04-20-Android14-Behavior-changes-all-apps-summarize</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-04-20-Android14-Behavior-changes-all-apps-summarize</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Android Dev Summit 2022 : 'Migrate Your Apps to Android 13' 세션 후기</title>
+        
+          <description>&lt;h5 id=&quot;세션-내용-요약&quot;&gt;세션 내용 요약&lt;/h5&gt;
+
+</description>
+        
+        <pubDate>Sun, 19 Feb 2023 16:00:37 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-02-19-Android-Dev-Summit-Android13-review</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-02-19-Android-Dev-Summit-Android13-review</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>DEVIEW 2021 모바일: 'Android Jetpack Compose 실제 서비스 적용 후기' 세션 후기</title>
+        
+          <description>&lt;h5 id=&quot;세션-내용-요약&quot;&gt;세션 내용 요약&lt;/h5&gt;
+
+</description>
+        
+        <pubDate>Sun, 05 Feb 2023 21:30:11 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-02-05-DEVIEW-Mobile-Jetpack-Compose-review</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>if(kakao)dev2022 모바일: '카카오페이 앱 리빌딩 스토리' 세션 후기</title>
+        
+          <description>&lt;h5 id=&quot;세션-내용-요약&quot;&gt;세션 내용 요약&lt;/h5&gt;
+
+</description>
+        
+        <pubDate>Sun, 15 Jan 2023 17:57:13 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-01-15-if-kakao-Mobile-kakaopay-rebuilding-review</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-01-15-if-kakao-Mobile-kakaopay-rebuilding-review</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>안드로이드 텍스트뷰 Width 이상 현상</title>
+        
+          <description>&lt;h4 id=&quot;android-textview-width-이상-현상-수정&quot;&gt;Android Textview width 이상 현상 수정&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Sun, 08 Jan 2023 22:52:55 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2023-01-08-Strange-Android-Textview-width</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2023-01-08-Strange-Android-Textview-width</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Giuhub Pages 404 error</title>
+        
+          <description>&lt;h4 id=&quot;jekyll-테마-적용-중에-발생한-오류-수정&quot;&gt;Jekyll 테마 적용 중에 발생한 오류 수정&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Thu, 29 Dec 2022 23:20:57 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2022-12-29-Giuhub-Pages-404-error</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2022-12-29-Giuhub-Pages-404-error</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Jekyll baseurl error</title>
+        
+          <description>&lt;h4 id=&quot;jekyll-테마-적용-중-발생한-오류-수정&quot;&gt;Jekyll 테마 적용 중 발생한 오류 수정&lt;/h4&gt;
+
+</description>
+        
+        <pubDate>Sun, 25 Dec 2022 04:20:29 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2022-12-25-Jekyll-baseurl-error</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2022-12-25-Jekyll-baseurl-error</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Info</title>
+        
+          <description>&lt;p&gt;Open blog today.&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 23 Dec 2022 23:46:49 +0900</pubDate>
+        <link>
+        https://15balloon.github.io/2022-12-23-welcome-to-blog</link>
+        <guid isPermaLink="true">https://15balloon.github.io/2022-12-23-welcome-to-blog</guid>
+      </item>
+      
+    
+  </channel>
+</rss>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>Clean Architecture 알아보기</title>
+    <meta name="description" content="Develop and Write" />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/balloon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="/2024-01-05-Clean-Architecture" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="15balloon" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Clean Architecture 알아보기" />
+    <meta property="og:description" content="Develop and Write" />
+    <meta property="og:url" content="/2024-01-05-Clean-Architecture" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Clean Architecture 알아보기" />
+    <meta name="twitter:description" content="Develop and Write" />
+    <meta name="twitter:url" content="/2024-01-05-Clean-Architecture" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "15balloon",
+    "name": "Clean Architecture 알아보기",
+    "url": "/2024-01-05-Clean-Architecture",
+    "image": "/assets/images/cover1.jpg",
+    "description": "Develop and Write"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="15balloon" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-android " role="presentation"><a href="/tag/android">Android</a></li>
+        <li class="nav-conference " role="presentation"><a href="/tag/conference">Conference</a></li>
+        <li class="nav-error " role="presentation"><a href="/tag/error">Error</a></li>
+        <li class="nav-flutter " role="presentation"><a href="/tag/flutter">Flutter</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/15balloon">15balloon</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover1.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/15balloon.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-test tag-content">
+
+        <header class="post-header">
+            <h1 class="post-title">Clean Architecture 알아보기</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+                    <a href='/author/15balloon'>15balloon</a>
+                
+            
+            <time class="post-date" datetime="2024-01-05">05 Jan 2024</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/android'>Android</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>OlymPos 프로젝트를 시작하면서 공부해야 겠다고 마음먹은 것들이 많았는데, 그중 하나가 클린 아키텍처다. <br />
+다들 클린 아키텍처 클린 아키텍처 하니 이게 도대체 뭔진 몰라도 공부해봐야 겠다는 생각이 들었다. <br />
+기본적인 Layered Architecture(계층 아키텍처)와 Clean Architecture(클린 아키텍처)의 개념과 이 둘의 차이점을 알아볼 것이다. <br />
+또한 아키텍처를 사용하는 이유와 아키텍처 선택 기준에 대하여 생각해보고 이를 정리하고자 한다.</p>
+
+<h4 id="용어-정리">용어 정리</h4>
+<p>Persistence(영속성): 데이터를 생성한 프로그램이 종료되어도 데이터가 지속되는 특성. DB에 저장된 데이터는 영속성을 가진 것이고, 메모리 상에 존재하는(변수에 저장된) 데이터는 영속성을 가지지 않은 것이다. <br />
+Business Rule(비즈니스 규칙): 어떤 일이 발생했을 때 수행하는 구체적인 일(ex.주문이 들어오면 상품 수량을 하나 줄임) <br />
+Business Role(비즈니스 역할): 사용자가 버튼을 클릭하면 발생하는 어떤 일(ex.주문 접수) <br />
+Business Logic(비즈니스 로직): (비즈니스 규칙 + 비즈니스 역할) 특정 요청(ex. 상품 구매하기)에 따른 주요 로직(ex. 상품, 배송지 정보 가져오기, 결제하기 등)의 집합. <br />
+Database Driven Development(데이터베이스 주도 설계): 데이터베이스를 먼저 설계하고, 이를 토대로 패키지를 구성하고, 데이터를 조작하는데 필요한 메소드를 만드는 방식으로 개발을 수행하는 방식 <br />
+Domain Driven Development(도메인 주도 설계): 비즈니스 역할과 규칙을 먼저 정의하고 이를 중심으로 설계하는 방식</p>
+
+<h4 id="layered-architecture">Layered Architecture</h4>
+<p>단순한 구조로 이루어져 있으며 기본적인 아키텍처이다. <br />
+UI(Presentation) Layer, Business Logic(Domain) Layer, Data Access(Persistence) Layer로 분리되어 있다.</p>
+<ul>
+  <li>UI Layer - 사용자와의 상호작용을 수행하고 사용자에게 데이터를 보여준다.</li>
+  <li>Business Logic Layer - 어플리케이션의 모든 비즈니스 로직을 수행한다.</li>
+  <li>Data Access Layer - DB나 파일같은 데이터 저장소에 접근하여 필요한 데이터를 가져오는 역할이다.</li>
+</ul>
+
+<p>각 계층의 관계는 다음과 같다. <br />
+의존성이 <strong>하위 계층</strong>(여기에선 Data Access)으로 향한다. <br />
+간단히 말하면 UI 계층은 Business Logic 계층을 알고 있고, Business Logic 계층은 Data Access 계층을 알고 있다.</p>
+
+<p>장바구니에 상품을 추가하는 상황이라면, <br />
+사용자가 장바구니 담기 버튼을 누름: UI 계층에서 상호작용 인식 <br />
+사용자의 장바구니 리스트에 상품을 추가함: 비즈니스 로직 계층에서 수행 <br />
+사용자의 장바구니 리스트를 DB에 업데이트함: 데이터 접근 계층에서 업데이트 쿼리 실행 <br />
+DB 업데이트 결과에 따른 후속 작업(실패 시 장바구니 리스트에서 상품 삭제): 비즈니스 로직 계층에서 수행 <br />
+장바구니 상태 보여줌: UI 계층에서 수행 <br />
+이렇게 수행된다.</p>
+
+<p>계층 아키텍처는 <strong>데이터베이스 주도 설계</strong>를 유도한다. <br />
+계층 아키텍처를 사용하면 개발을 할 때 데이터베이스 위주로 사고를 하게 된다는 뜻이다. <br />
+예를 들면 다음과 같은 순서로 개발을 하는 것이다. <br />
+먼저 해당 기능에 필요한 데이터를 기준으로 데이터베이스 테이블을 구성한다. <br />
+그리고 해당 테이블에 데이터를 삽입하거나 가져오는 쿼리를 작성한다. <br />
+쿼리를 통해 가져온 데이터를 토대로 어떤 기능을 수행하도록 하는 코드를 작성한다. <br />
+이러한 방식이 나쁜 것은 아니지만 기능의 <strong>목적</strong>에 집중하는 것이 아닌 <strong>데이터</strong>에 집중하게 되어 코드를 보았을 때 기능의 목적을 파악하기 어렵다. <br />
+또한 개발자가 편한 사고 방식이므로 개발자가 아닌 사람과 소통을 할 때 오류가 발생할 수 있다. <br />
+계층 아키텍처가 데이터베이스 주도 설계를 유도한다고 해서 도메인 주도 설계를 적용할 수 없다는 뜻은 아니니 이 점을 유의해야 한다.</p>
+
+<h4 id="clean-architecture">Clean Architecture</h4>
+<p>2012년에 Robert C. Martin(a.k.a. Uncle Bob)에 의해 소개되었다. <br />
+Onion Architecture(양파 아키텍처)와 도메인 주도 설계의 핵심을 합한 아키텍처이다. <br />
+어니언 아키텍처는 비즈니스 로직과 인터페이스 어댑터(외부 시스템과 통신하기 위해 사용하는 것)를 분리하는 것이 핵심인 아키텍처이다. <br />
+Domain Layer, Application Layer, User Interface Layer, Infrastructure Layer로 분리되어 있다.</p>
+<ul>
+  <li>Domain Layer - 엔터프라이즈 비즈니스 규칙을 정의하는 <strong>Entity</strong>가 존재한다.</li>
+  <li>Application Layer - 비즈니스 역할을 수행하는 <strong>Use Case</strong>가 있다.</li>
+  <li>User Interface Layer - 데이터를 가져오는 <strong>Repository</strong>와 User Interface를 다루는 <strong>Controller</strong>, <strong>Presenter</strong>가 함께 존재하는 계층이다.</li>
+  <li>Infrastructure Layer - 어떤 <strong>DB</strong>, 어떤 <strong>프레임워크</strong>를 사용하는지와 같은 매우 구체적으로 구현된 부분이다.</li>
+</ul>
+
+<p>도메인 계층과 어플리케이션 계층이 구분되기 때문에 패키지와 파일 구조를 살펴보는 것만으로도 어떠한 기능이 수행되는지 파악하기 쉽다.</p>
+
+<p>의존성은 도메인 계층으로 향한다. <br />
+도메인 계층은 사용 당하기만 한다. <br />
+어플리케이션 계층은 도메인 계층에 의존해야 하며 어떠한 계층도 데이터(여기에선 Repository)에 의존하지 않는다. <br />
+어플리케이션 계층이 데이터를 모르는데 어떻게 비즈니스 로직을 수행할까? <br />
+이를 위해 Dependency Inversion Principle(의존성 역전 원칙)을 이용한다. <br />
+어플리케이션 계층은 레포지토리의 인터페이스를 참조하고, 실제 레포지토리의 구현체는 User Interface 계층에 작성하여 사용하는 것이다. <br />
+만약 어플리케이션 계층이 데이터에 의존하였다면 A 레포지토리 대신 B 레포지토리를 써야 하는 경우에 어플리케이션 계층에서 A 레포지토리를 사용했던 부분을 B 레포지토리로 바꿔줘야 겠지만 인터페이스를 참조하여 개발했다면 B 레포지토리가 해당 인터페이스의 구현체인 경우 어플리케이션 계층의 코드 변경없이 그대로 사용할 수 있다. <br />
+확장성이 높아진 것이다. <br />
+다만 이렇게 인터페이스를 작성하게 되면 계층 아키텍처에 비해 파일 개수가 많아지게 된다.</p>
+
+<h4 id="differences">Differences</h4>
+<p>계층 아키텍처는 Data Centric(데이터 중심) 아키텍처이기 때문에 비즈니스 의도를 반영하지 않는다. <br />
+데이터 중심으로 이름을 붙이고 Use Case뿐만 아니라 모든 것들이 데이터 중심으로 정해진다. <br />
+클린 아키텍처는 도메인이 중심이다. <br />
+프로그램을 만드는 이유가 특정 문제를 소프트웨어로 해결하기 위함이니 해결할 문제를 중점으로 두고 프로그램을 설계한다는 것이다.</p>
+
+<p>계층 아키텍처는 Business Logic 계층이 비즈니스 규칙과 역할을 모두 담당한다. <br />
+그러나 클린 아키텍처에서는 이를 Domain과 Application 계층으로 분리한다. <br />
+SOLID 원칙의 관점에서 보면 계층 아키텍처의 Business Logic 계층은 여러 책임을 가지게 되므로 단일 책임 원칙에 위배된다. <br />
+SOLID 원칙을 지키고자 한다면 클린 아키텍처와 같이 비즈니스 규칙과 역할을 분리하는 것이 옳을 것이다.</p>
+
+<h4 id="conclusion">Conclusion</h4>
+<p>아키텍처를 사용하는 목적은 전체 개발 프로세스를 간단하게 만들기 위함이다. <br />
+특히 아키텍처를 사용하면 유지보수 비용을 줄이는데 용이하다. <br />
+더 자세히 말하면 특정 인프라에 대한 의존성을 줄여서(관심사를 분리해서) 변경이 용이하고 확장성이 높은 코드를 만들어 코드를 이해하고 수정하는 시간을 절감하는 것이다.</p>
+
+<p>계층 아키텍처는 구조가 단순해서 추가적인 지식없이 쉽게 구조를 파악할 수 있다는 장점이 있지만 실제로 어떤 기능이 포함되어 있는지 파악하기 어렵다는 단점이 있다. <br />
+클린 아키텍처는 프로젝트가 어떤 일을 하는지 파악하기 쉽다는 장점이 있지만 패키지 구조가 복잡하고 계층 분리를 위해 인터페이스를 작성해야 하기 때문에 단순한 기능을 구현할 때도 많은 양의 코드를 작성해야 한다는 단점이 있다. <br />
+각 아키텍처의 장단점을 비교해보았을 때 규모가 작은 프로젝트의 경우에는 빠른 개발을 위해 구조가 단순하고 익숙한 계층 아키텍처를 선택하는 것이 괜찮아 보인다. <br />
+규모가 크고 여러 인원이 진행하는 프로젝트는 클린 아키텍처를 적용하는 것이 추후 유지보수를 진행할 때 도움이 될 것이다.</p>
+
+<p>클린 아키텍처 설명을 처음 봤을 때는 일단 용어가 무슨 뜻인지 모르거나 헷갈려서 이해하는데 어려움이 있었다. <br />
+어떤 사람은 Application 계층이라 하고 어떤 사람은 Use Case 계층이라 해서 뭐가 맞는 건지 혼란스러웠는데 그냥 혼용해서 사용하는 구나 하고 받아들이니 그때부턴 괜찮았다. <br />
+그러다 다시 ‘어니언 아키텍처’같은 모르는 개념이 나오면 그것에 대해 공부하고 또 그 설명에서 모르는 개념이 나와서 공부하고 이걸 계속 반복했다. <br />
+마치 사칙연산도 모르면서 분수의 나눗셈을 이해하려한 것 같았다. <br />
+계속해서 학습하고 용어들도 눈에 익고 익숙해지니 다시 클린 아키텍처 설명을 봤을 때 내용이 이해가 가기 시작했다. <br />
+그때부턴 실제 개발을 할 때는 어떻게 쓰이는 것인가를 계속해서 생각하고 찾아보며 정말 개념을 완전히 이해하기 위해 관련 영상과 글을 반복해서 읽었다. <br />
+그 결과 이렇게 포스트를 작성할 수 있게 되었다. <br />
+글에 다소 부족한 점이 있을 수는 있지만 나중에 이 글을 다시 읽었을 땐 그 점을 보완할 수 있으리란 생각이 든다. <br />
+안드로이드 앱의 경우 구글에서 앱 개발 시 권장하는 아키텍처를 설명한 글이 있기 때문에 다음 포스트에는 해당 문서를 읽고 정리할 계획이다. <br />
+다음 포스트까지 작성 후에 현재 진행하고 있는 OlymPos에 어떤 아키텍처를 사용할 것인지 선정하여 적용할 것이다.</p>
+
+<h5 id="reference">Reference:</h5>
+
+<ol>
+  <li><a href="https://youtu.be/0JRI-xq10yo?si=W3Om3caHBoqpudlb">The Great N-layer vs Clean Architecture Debate</a></li>
+  <li><a href="https://youtu.be/s5I149CBC7Y?si=NI5eVIBUSGGESRpd">Introduction to Clean Architecture &amp; Problems with Layered Architecture</a></li>
+  <li><a href="https://meetup.nhncloud.com/posts/345">요즘 핫한 Clean Architecture 왜 쓰는 거야?</a></li>
+</ol>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/15balloon" style="background-image: url(/assets/images/15balloon_profile.png)"><span class="hidden">15balloon's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/15balloon">15balloon</a></h4>
+
+                        
+                            <p> Android Developer</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> Seoul, Republic of Korea</span>
+                            <span class="author-link icon-link"><a href="http://15balloon.github.io/"> 15balloon.github.io/</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=Clean Architecture 알아보기&amp;url=https://15balloon.github.io2024-01-05-Clean-Architecture"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://15balloon.github.io2024-01-05-Clean-Architecture"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://15balloon.github.io2024-01-05-Clean-Architecture"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover1.jpg)" href="/2024-01-30-ViewBinding-Migration-Issue">
+            <section class="post">
+                <h2>View Binding Migration 문제 해결</h2>
+                <p>회사에 대략 6년 정도 된 앱이 하나 있는데, 그 앱을 담당했던 분이 퇴사하면서 내가 그...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover1.jpg)" href="/2023-09-23-Kotlin-Coroutines-2">
+            <section class="post">
+                <h2>Kotlin Coroutines 정리: 2</h2>
+                <p>Launch &amp; Async launch - 새로운 Coroutine을 시작하며 호출자에게 결과를 반환하지 않는다. async - 새로운...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">15balloon</a> &copy; 2024</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyllt/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', '', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for 15balloon -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
